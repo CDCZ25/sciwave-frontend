@@ -1,0 +1,31 @@
+{
+  "nav": {
+    "logo": "SciWave",
+    "home": "Inicio",
+    "login": "Iniciar sesión",
+    "logout": "Cerrar sesión",
+    "languageSwitch": "Cambiar a portugués"
+  },
+  "home": {
+    "title": "SciWave",
+    "subtitle": "Ciencia y tecnología en español",
+    "allCategories": "Todas las categorías",
+    "noArticles": "No hay artículos disponibles",
+    "readMore": "Leer más"
+  },
+  "article": {
+    "category": "Categoría",
+    "backToHome": "Volver al inicio",
+    "loading": "Cargando artículo...",
+    "notFound": "Artículo no encontrado"
+  },
+  "auth": {
+    "loginTitle": "Iniciar sesión",
+    "email": "Correo electrónico",
+    "placeholderEmail": "tu@email.com",
+    "password": "Contraseña",
+    "loginButton": "Entrar",
+    "loggingIn": "Iniciando sesión...",
+    "error": "Error al iniciar sesión. Verifica tus credenciales."
+  }
+}
