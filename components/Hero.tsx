@@ -10,8 +10,12 @@ export default function Hero({ onExplore }: HeroProps) {
   const t = useTranslations('home');
 
   return (
-    <div className="relative overflow-hidden bg-linear-to-br from-blue-700 via-blue-600 to-indigo-700 text-white rounded-2xl mb-10 shadow-xl">
-      {/* Decorative circles */}
+    <div
+      className="relative overflow-hidden text-white mb-10 shadow-xl"
+      style={{ backgroundImage: 'url(https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Trifid_Nebula_by_Deddy_Dayag.jpg/960px-Trifid_Nebula_by_Deddy_Dayag.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}
+    >
+      {/* Dark overlay so text stays readable */}
+      <div className="absolute inset-0 bg-slate-950/60" />
       <div className="absolute -top-20 -right-20 w-64 h-64 bg-white/5 rounded-full" />
       <div className="absolute -bottom-16 -left-16 w-48 h-48 bg-white/5 rounded-full" />
 
@@ -27,9 +31,9 @@ export default function Hero({ onExplore }: HeroProps) {
         </p>
         <button
           onClick={onExplore}
-          className="inline-flex items-center gap-2 px-7 py-3 bg-white text-blue-700 font-bold rounded-full shadow-lg hover:shadow-xl hover:bg-blue-50 transition-all duration-200"
+          className="inline-flex items-center gap-2 px-7 py-3 bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-600 text-white font-bold rounded-full shadow-lg hover:shadow-xl hover:opacity-90 transition-all duration-200 border border-indigo-600/10"
         >
-          {t('heroCta')} ↓
+          {t('heroCta')}
         </button>
       </div>
     </div>

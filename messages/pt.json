@@ -17,11 +17,12 @@
     "heroSubtitle": "Artigos de ciência, tecnologia e educação ambiental no seu idioma, traduzidos com inteligência artificial.",
     "heroCta": "Explorar artigos",
     "searchPlaceholder": "Buscar artigos...",
-    "searchLabel": "Buscar"
+    "searchLabel": "Buscar",
+    "loading": "Carregando artigos..."
   },
   "article": {
     "category": "Categoria",
-    "backToHome": "← Voltar ao início",
+    "backToHome": "Voltar ao início",
     "loading": "Carregando artigo...",
     "notFound": "Artigo não encontrado",
     "source": "Fonte original",

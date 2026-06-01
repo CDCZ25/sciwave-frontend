@@ -58,24 +58,25 @@ export default function HomePage() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen bg-slate-950 text-slate-100">
       <Hero onExplore={scrollToGrid} />
 
-      <div ref={gridRef} className="flex flex-col lg:flex-row gap-8">
+      <div ref={gridRef} className="max-w-7xl mx-auto px-6 py-10 flex flex-col lg:flex-row gap-10">
+
         {/* Sidebar */}
         <aside className="lg:w-56 shrink-0">
-          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-5 sticky top-20">
-            <h2 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-4">
+          <div className="sticky top-6">
+            <p className="text-xs tracking-widest uppercase text-slate-500 mb-4 px-1">
               {t('allCategories')}
-            </h2>
+            </p>
             <ul className="space-y-1">
               <li>
                 <button
                   onClick={() => { setSelectedCategory(null); setSearch(''); }}
-                  className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
+                  className={`w-full text-left px-4 py-2.5 rounded-lg text-sm transition-all duration-150 ${
                     selectedCategory === null && !search
-                      ? 'bg-blue-100 text-blue-700 font-semibold'
-                      : 'hover:bg-gray-50 text-gray-700'
+                      ? 'bg-cyan-400/10 text-cyan-300 border border-cyan-400/20 font-semibold'
+                      : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
                   }`}
                 >
                   {t('allCategories')}
@@ -85,10 +86,10 @@ export default function HomePage() {
                 <li key={category.id}>
                   <button
                     onClick={() => { setSelectedCategory(category.id); setSearch(''); }}
-                    className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
+                    className={`w-full text-left px-4 py-2.5 rounded-lg text-sm transition-all duration-150 ${
                       selectedCategory === category.id
-                        ? 'bg-blue-100 text-blue-700 font-semibold'
-                        : 'hover:bg-gray-50 text-gray-700'
+                        ? 'bg-cyan-400/10 text-cyan-300 border border-cyan-400/20 font-semibold'
+                        : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
                     }`}
                   >
                     {category.name}
@@ -99,16 +100,20 @@ export default function HomePage() {
           </div>
         </aside>
 
-        {/* Main content */}
+        {/* Main */}
         <div className="flex-grow min-w-0">
           <SearchBar value={search} onChange={handleSearchChange} />
 
           {loading ? (
-            <div className="text-center py-16">
-              <div className="inline-block h-10 w-10 animate-spin rounded-full border-4 border-solid border-blue-600 border-r-transparent" />
+            <div className="flex flex-col items-center justify-center py-24">
+              <div className="relative h-12 w-12">
+                <div className="absolute inset-0 rounded-full border-2 border-cyan-400/20"></div>
+                <div className="absolute inset-0 rounded-full border-t-2 border-cyan-400 animate-spin"></div>
+              </div>
+              <p className="mt-4 text-slate-500 text-sm tracking-widest uppercase">{t('loading')}</p>
             </div>
           ) : filteredArticles.length === 0 ? (
-            <div className="text-center py-16 text-gray-400">
+            <div className="text-center py-24 text-slate-500">
               <p className="text-lg">{t('noArticles')}</p>
             </div>
           ) : (
