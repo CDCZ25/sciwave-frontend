@@ -4,6 +4,7 @@
     "home": "Início",
     "login": "Entrar",
     "logout": "Sair",
+    "admin": "Painel admin",
     "languageSwitch": "Mudar para espanhol"
   },
   "home": {
@@ -11,13 +12,22 @@
     "subtitle": "Ciência e tecnologia em português",
     "allCategories": "Todas as categorias",
     "noArticles": "Não há artigos disponíveis",
-    "readMore": "Ler mais"
+    "readMore": "Ler mais",
+    "heroTitle": "Democratizando o conhecimento científico",
+    "heroSubtitle": "Artigos de ciência, tecnologia e educação ambiental no seu idioma, traduzidos com inteligência artificial.",
+    "heroCta": "Explorar artigos",
+    "searchPlaceholder": "Buscar artigos...",
+    "searchLabel": "Buscar"
   },
   "article": {
     "category": "Categoria",
-    "backToHome": "Voltar ao início",
+    "backToHome": "← Voltar ao início",
     "loading": "Carregando artigo...",
-    "notFound": "Artigo não encontrado"
+    "notFound": "Artigo não encontrado",
+    "source": "Fonte original",
+    "share": "Copiar link",
+    "shareCopied": "Link copiado!",
+    "readInLanguage": "Ler em"
   },
   "auth": {
     "loginTitle": "Entrar",
@@ -27,5 +37,46 @@
     "loginButton": "Entrar",
     "loggingIn": "Entrando...",
     "error": "Erro ao entrar. Verifique suas credenciais."
+  },
+  "admin": {
+    "title": "Painel de administração",
+    "subtitle": "Gerencie e traduza os artigos do SciWave",
+    "newArticle": "Novo artigo",
+    "translate": "Traduzir com IA",
+    "translating": "Traduzindo...",
+    "translated": "Traduzido!",
+    "translateError": "Erro ao traduzir",
+    "allResources": "Todos os recursos",
+    "language": "Idioma",
+    "category": "Categoria",
+    "status": "Status",
+    "actions": "Ações",
+    "statusDraft": "Rascunho",
+    "statusPublished": "Publicado",
+    "statusReview": "Em revisão",
+    "langEn": "Inglês",
+    "langEs": "Espanhol",
+    "langPt": "Português",
+    "onlyEnTranslatable": "Apenas artigos em inglês podem ser traduzidos",
+    "alreadyTranslated": "Já traduzido",
+    "noResources": "Nenhum recurso ainda. Crie o primeiro artigo.",
+    "form": {
+      "title": "Novo artigo em inglês",
+      "subtitle": "O artigo será criado em inglês e você poderá traduzi-lo para espanhol e português no painel.",
+      "titleLabel": "Título",
+      "titlePlaceholder": "Enter article title...",
+      "contentLabel": "Conteúdo",
+      "contentPlaceholder": "Paste or write the article content here...",
+      "categoryLabel": "Categoria",
+      "categoryPlaceholder": "Selecione uma categoria",
+      "sourceLabel": "URL da fonte (opcional)",
+      "sourcePlaceholder": "https://...",
+      "save": "Salvar artigo",
+      "saving": "Salvando...",
+      "cancel": "Cancelar",
+      "success": "Artigo criado! Agora você pode traduzi-lo no painel.",
+      "errorLoad": "Erro ao carregar categorias ou idiomas",
+      "errorSave": "Erro ao salvar o artigo"
+    }
   }
 }

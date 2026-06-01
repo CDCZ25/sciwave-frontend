@@ -4,6 +4,7 @@
     "home": "Inicio",
     "login": "Iniciar sesión",
     "logout": "Cerrar sesión",
+    "admin": "Panel admin",
     "languageSwitch": "Cambiar a portugués"
   },
   "home": {
@@ -11,13 +12,22 @@
     "subtitle": "Ciencia y tecnología en español",
     "allCategories": "Todas las categorías",
     "noArticles": "No hay artículos disponibles",
-    "readMore": "Leer más"
+    "readMore": "Leer más",
+    "heroTitle": "Democratizando el conocimiento científico",
+    "heroSubtitle": "Artículos de ciencia, tecnología y educación ambiental en tu idioma, traducidos con inteligencia artificial.",
+    "heroCta": "Explorar artículos",
+    "searchPlaceholder": "Buscar artículos...",
+    "searchLabel": "Buscar"
   },
   "article": {
     "category": "Categoría",
-    "backToHome": "Volver al inicio",
+    "backToHome": "← Volver al inicio",
     "loading": "Cargando artículo...",
-    "notFound": "Artículo no encontrado"
+    "notFound": "Artículo no encontrado",
+    "source": "Fuente original",
+    "share": "Copiar enlace",
+    "shareCopied": "¡Enlace copiado!",
+    "readInLanguage": "Leer en"
   },
   "auth": {
     "loginTitle": "Iniciar sesión",
@@ -27,5 +37,46 @@
     "loginButton": "Entrar",
     "loggingIn": "Iniciando sesión...",
     "error": "Error al iniciar sesión. Verifica tus credenciales."
+  },
+  "admin": {
+    "title": "Panel de administración",
+    "subtitle": "Gestiona y traduce los artículos de SciWave",
+    "newArticle": "Nuevo artículo",
+    "translate": "Traducir con IA",
+    "translating": "Traduciendo...",
+    "translated": "¡Traducido!",
+    "translateError": "Error al traducir",
+    "allResources": "Todos los recursos",
+    "language": "Idioma",
+    "category": "Categoría",
+    "status": "Estado",
+    "actions": "Acciones",
+    "statusDraft": "Borrador",
+    "statusPublished": "Publicado",
+    "statusReview": "En revisión",
+    "langEn": "Inglés",
+    "langEs": "Español",
+    "langPt": "Portugués",
+    "onlyEnTranslatable": "Solo los artículos en inglés pueden traducirse",
+    "alreadyTranslated": "Ya traducido",
+    "noResources": "No hay recursos aún. Crea el primer artículo.",
+    "form": {
+      "title": "Nuevo artículo en inglés",
+      "subtitle": "El artículo se creará en inglés y podrás traducirlo al español y portugués desde el panel.",
+      "titleLabel": "Título",
+      "titlePlaceholder": "Enter article title...",
+      "contentLabel": "Contenido",
+      "contentPlaceholder": "Paste or write the article content here...",
+      "categoryLabel": "Categoría",
+      "categoryPlaceholder": "Selecciona una categoría",
+      "sourceLabel": "URL fuente (opcional)",
+      "sourcePlaceholder": "https://...",
+      "save": "Guardar artículo",
+      "saving": "Guardando...",
+      "cancel": "Cancelar",
+      "success": "¡Artículo creado! Ahora puedes traducirlo desde el panel.",
+      "errorLoad": "Error al cargar categorías o idiomas",
+      "errorSave": "Error al guardar el artículo"
+    }
   }
 }

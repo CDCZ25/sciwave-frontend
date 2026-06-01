@@ -59,7 +59,15 @@ export default function Navbar() {
               {locale === 'es' ? 'PT' : 'ES'}
             </button>
 
-            {/* Login/Logout */}
+            {user && (
+              <Link
+                href={`/${locale}/admin`}
+                className="px-4 py-2 text-sm font-semibold text-white bg-white/10 hover:bg-white/20 border border-white/20 rounded-full transition-all duration-200"
+              >
+                {t('admin')}
+              </Link>
+            )}
+
             {user ? (
               <button
                 onClick={handleLogout}
