@@ -24,7 +24,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} className="h-full">
-      <body className="min-h-full flex flex-col bg-gray-50">
+      <body className="min-h-full flex flex-col bg-slate-950">
         <NextIntlClientProvider messages={messages}>
           <Navbar />
           <main className="flex-grow">
