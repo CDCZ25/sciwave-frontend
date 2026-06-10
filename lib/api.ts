@@ -53,7 +53,11 @@ export async function getResources(langCode: string): Promise<Resource[]> {
 
 export async function getResource(langCode: string, id: string): Promise<Resource> {
   const response = await fetch(`${API_URL}/api/v1/${langCode}/resources/${id}`);
-  if (!response.ok) throw new Error('Failed to fetch resource');
+  if (!response.ok) {
+    const error = new Error('Failed to fetch resource') as Error & { status?: number };
+    error.status = response.status;
+    throw error;
+  }
   return response.json();
 }
 

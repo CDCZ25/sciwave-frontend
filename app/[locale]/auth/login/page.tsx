@@ -45,7 +45,6 @@ export default function LoginPage() {
             <h1 className="text-3xl font-bold text-slate-100 mb-2">
               {t('loginTitle')}
             </h1>
-            <div className="text-2xl mb-4"></div>
           </div>
 
           {/* Login Form */}
@@ -93,7 +92,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-600 hover:opacity-90 disabled:opacity-50 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200"
+              className="w-full bg-linear-to-r from-teal-600 via-cyan-600 to-teal-700 hover:opacity-90 disabled:opacity-50 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200"
             >
               {loading ? t('loggingIn') : t('loginButton')}
             </button>

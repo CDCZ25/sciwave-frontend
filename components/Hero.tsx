@@ -26,12 +26,12 @@ export default function Hero({ onExplore }: HeroProps) {
         <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight mb-5">
           {t('heroTitle')}
         </h1>
-        <p className="text-lg text-blue-100 leading-relaxed mb-8 max-w-xl">
+        <p className="text-lg text-cyan-100 leading-relaxed mb-8 max-w-xl">
           {t('heroSubtitle')}
         </p>
         <button
           onClick={onExplore}
-          className="inline-flex items-center gap-2 px-7 py-3 bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-600 text-white font-bold rounded-full shadow-lg hover:shadow-xl hover:opacity-90 transition-all duration-200 border border-indigo-600/10"
+          className="inline-flex items-center gap-2 px-7 py-3 bg-linear-to-r from-teal-600 via-cyan-600 to-teal-700 text-white font-bold rounded-full shadow-lg hover:shadow-xl hover:opacity-90 transition-all duration-200 border border-cyan-600/10"
         >
           {t('heroCta')}
         </button>

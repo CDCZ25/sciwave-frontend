@@ -19,6 +19,7 @@ export default function NewArticlePage() {
   const [content, setContent] = useState('');
   const [categoryId, setCategoryId] = useState('');
   const [sourceUrl, setSourceUrl] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
   const [saving, setSaving] = useState(false);
   const [saveError, setSaveError] = useState('');
 
@@ -51,6 +52,7 @@ export default function NewArticlePage() {
         languageId: enLang.id,
         id_crosslanguage: crypto.randomUUID(),
         source_url: sourceUrl || undefined,
+        image_url: imageUrl || undefined,
         status: 'draft',
       });
       router.push(`/${locale}/admin`);
@@ -62,7 +64,8 @@ export default function NewArticlePage() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
+    <div className="min-h-screen bg-gray-50">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
         <p className="text-gray-500 mt-1 text-sm">{t('subtitle')}</p>
@@ -86,7 +89,7 @@ export default function NewArticlePage() {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder={t('titlePlaceholder')}
-            className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
           />
         </div>
 
@@ -101,7 +104,7 @@ export default function NewArticlePage() {
             onChange={(e) => setContent(e.target.value)}
             placeholder={t('contentPlaceholder')}
             rows={14}
-            className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-y font-mono text-sm"
+            className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent resize-y font-mono text-sm"
           />
         </div>
 
@@ -114,7 +117,7 @@ export default function NewArticlePage() {
             required
             value={categoryId}
             onChange={(e) => setCategoryId(e.target.value)}
-            className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+            className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent bg-white"
           >
             <option value="">{t('categoryPlaceholder')}</option>
             {categories.map((cat) => (
@@ -138,8 +141,31 @@ export default function NewArticlePage() {
             value={sourceUrl}
             onChange={(e) => setSourceUrl(e.target.value)}
             placeholder={t('sourcePlaceholder')}
-            className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
           />
+        </div>
+
+        {/* Image URL */}
+        <div>
+          <label className="block text-sm font-semibold text-gray-700 mb-1.5">
+            {t('imageLabel')}
+          </label>
+          <input
+            type="url"
+            value={imageUrl}
+            onChange={(e) => setImageUrl(e.target.value)}
+            placeholder={t('imagePlaceholder')}
+            className="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
+          />
+          {imageUrl && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={imageUrl}
+              alt=""
+              className="mt-3 h-32 w-full object-cover rounded-lg border border-gray-200"
+              onError={(e) => { e.currentTarget.style.display = 'none'; }}
+            />
+          )}
         </div>
 
         {saveError && (
@@ -153,7 +179,7 @@ export default function NewArticlePage() {
           <button
             type="submit"
             disabled={saving || !enLang}
-            className="px-6 py-2.5 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
+            className="px-6 py-2.5 bg-cyan-600 text-white font-semibold rounded-lg hover:bg-cyan-700 disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
           >
             {saving ? t('saving') : t('save')}
           </button>
@@ -166,6 +192,7 @@ export default function NewArticlePage() {
           </button>
         </div>
       </form>
+      </div>
     </div>
   );
 }

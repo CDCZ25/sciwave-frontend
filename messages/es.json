@@ -18,7 +18,9 @@
     "heroCta": "Explorar artículos",
     "searchPlaceholder": "Buscar artículos...",
     "searchLabel": "Buscar",
-    "loading": "Cargando artículos..."
+    "loading": "Cargando artículos...",
+    "error": "No se pudieron cargar los artículos.",
+    "retry": "Reintentar"
   },
   "article": {
     "category": "Categoría",
@@ -28,7 +30,9 @@
     "source": "Fuente original",
     "share": "Copiar enlace",
     "shareCopied": "¡Enlace copiado!",
-    "readInLanguage": "Leer en"
+    "readInLanguage": "Leer en",
+    "error": "No se pudo cargar el artículo.",
+    "retry": "Reintentar"
   },
   "auth": {
     "loginTitle": "Iniciar sesión",
@@ -72,6 +76,8 @@
       "categoryPlaceholder": "Selecciona una categoría",
       "sourceLabel": "URL fuente (opcional)",
       "sourcePlaceholder": "https://...",
+      "imageLabel": "URL de imagen (opcional)",
+      "imagePlaceholder": "https://...",
       "save": "Guardar artículo",
       "saving": "Guardando...",
       "cancel": "Cancelar",

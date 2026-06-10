@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, useCallback } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { getResources, getCategories, type Resource, type Category } from '@/lib/api';
 import ArticleCard from '@/components/ArticleCard';
+import ArticleCardSkeleton from '@/components/ArticleCardSkeleton';
 import Hero from '@/components/Hero';
 import SearchBar from '@/components/SearchBar';
 
@@ -16,27 +17,33 @@ export default function HomePage() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [reloadKey, setReloadKey] = useState(0);
 
   const gridRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    async function fetchData() {
+    async function load() {
       try {
         setLoading(true);
+        setError(false);
         const [articlesData, categoriesData] = await Promise.all([
           getResources(locale),
           getCategories(locale),
         ]);
         setArticles(articlesData);
         setCategories(categoriesData);
-      } catch (error) {
-        console.error('Failed to fetch data:', error);
+      } catch (err) {
+        console.error('Failed to fetch data:', err);
+        setError(true);
       } finally {
         setLoading(false);
       }
     }
-    fetchData();
-  }, [locale]);
+    load();
+  }, [locale, reloadKey]);
+
+  const handleRetry = () => setReloadKey((k) => k + 1);
 
   const handleSearchChange = useCallback((value: string) => {
     setSearch(value);
@@ -105,12 +112,20 @@ export default function HomePage() {
           <SearchBar value={search} onChange={handleSearchChange} />
 
           {loading ? (
-            <div className="flex flex-col items-center justify-center py-24">
-              <div className="relative h-12 w-12">
-                <div className="absolute inset-0 rounded-full border-2 border-cyan-400/20"></div>
-                <div className="absolute inset-0 rounded-full border-t-2 border-cyan-400 animate-spin"></div>
-              </div>
-              <p className="mt-4 text-slate-500 text-sm tracking-widest uppercase">{t('loading')}</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <ArticleCardSkeleton key={i} />
+              ))}
+            </div>
+          ) : error ? (
+            <div className="text-center py-24">
+              <p className="text-lg text-slate-300 mb-6">{t('error')}</p>
+              <button
+                onClick={handleRetry}
+                className="text-cyan-400 hover:text-cyan-300 text-sm tracking-widest uppercase border border-cyan-400/30 hover:border-cyan-300/60 px-6 py-2 rounded-full transition-all duration-200"
+              >
+                {t('retry')}
+              </button>
             </div>
           ) : filteredArticles.length === 0 ? (
             <div className="text-center py-24 text-slate-500">

@@ -20,7 +20,10 @@ export default function ArticleCard({ article }: ArticleCardProps) {
   const locale = useLocale();
   const t = useTranslations('home');
 
-  const preview = article.content.substring(0, 140).trimEnd() + '…';
+  const preview =
+    article.content.length > 140
+      ? article.content.substring(0, 140).trimEnd() + '…'
+      : article.content;
 
   const gradientIndex = article.id.charCodeAt(0) % PLACEHOLDER_COLORS.length;
   const gradient = PLACEHOLDER_COLORS[gradientIndex];
@@ -46,7 +49,7 @@ export default function ArticleCard({ article }: ArticleCardProps) {
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
           ) : (
-            <div className={`w-full h-full bg-gradient-to-br ${gradient} flex items-center justify-center`}>
+            <div className={`w-full h-full bg-linear-to-br ${gradient} flex items-center justify-center`}>
               <span className="text-white/30 text-5xl font-black select-none">
                 {article.title.charAt(0).toUpperCase()}
               </span>

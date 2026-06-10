@@ -1,7 +1,7 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
-import { locales } from '@/i18n';
+import { locales, type Locale } from '@/i18n';
 import Navbar from '@/components/Navbar';
 
 export default async function LocaleLayout({
@@ -14,7 +14,7 @@ export default async function LocaleLayout({
   const { locale } = await params;
 
   // Ensure that the incoming `locale` is valid
-  if (!locales.includes(locale as any)) {
+  if (!locales.includes(locale as Locale)) {
     notFound();
   }
 
@@ -30,9 +30,9 @@ export default async function LocaleLayout({
           <main className="flex-grow">
             {children}
           </main>
-          <footer className="bg-gray-800 text-white py-6 mt-12">
+          <footer className="bg-slate-900 border-t border-slate-800 text-slate-400 py-6 mt-12">
             <div className="max-w-7xl mx-auto px-4 text-center text-sm">
-              © 2026 SciWave {locale === 'es' ? '' : ''}
+              © 2026 SciWave
             </div>
           </footer>
         </NextIntlClientProvider>

@@ -1,11 +1,12 @@
 'use client';
 
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useState, use } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { getResource, type Resource } from '@/lib/api';
-import { use } from 'react';
 import { getCategoryColor } from '@/lib/categoryColors';
+import Spinner from '@/components/Spinner';
 
 const LANG_NAMES: Record<string, string> = { es: 'Español', pt: 'Português', en: 'English' };
 const OTHER_LOCALE: Record<string, string> = { es: 'pt', pt: 'es' };
@@ -18,16 +19,20 @@ export default function ArticlePage({
   const { id } = use(params);
   const t = useTranslations('article');
   const locale = useLocale();
+  const router = useRouter();
 
   const [article, setArticle] = useState<Resource | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   const [copied, setCopied] = useState(false);
   const [otherExists, setOtherExists] = useState(false);
+  const [reloadKey, setReloadKey] = useState(0);
 
   useEffect(() => {
-    async function fetchArticle() {
+    async function load() {
       try {
         setLoading(true);
+        setError(false);
         const data = await getResource(locale, id);
         setArticle(data);
 
@@ -37,14 +42,22 @@ export default function ArticlePage({
             .then(() => setOtherExists(true))
             .catch(() => setOtherExists(false));
         }
-      } catch (error) {
-        console.error('Failed to fetch article:', error);
+      } catch (err) {
+        console.error('Failed to fetch article:', err);
+        // A real 404 falls through to the "not found" view; other failures show retry.
+        if ((err as { status?: number }).status === 404) {
+          setArticle(null);
+        } else {
+          setError(true);
+        }
       } finally {
         setLoading(false);
       }
     }
-    fetchArticle();
-  }, [locale, id]);
+    load();
+  }, [locale, id, reloadKey]);
+
+  const handleRetry = () => setReloadKey((k) => k + 1);
 
   const handleShare = async () => {
     await navigator.clipboard.writeText(window.location.href);
@@ -54,17 +67,23 @@ export default function ArticlePage({
 
   const switchLanguage = () => {
     const other = OTHER_LOCALE[locale];
-    if (other) window.location.href = `/${other}/articles/${id}`;
+    if (other) router.push(`/${other}/articles/${id}`);
   };
 
   if (loading) {
+    return <Spinner size={56} label={t('loading')} className="min-h-screen bg-slate-950" />;
+  }
+
+  if (error) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-slate-950">
-        <div className="relative h-14 w-14">
-          <div className="absolute inset-0 rounded-full border-2 border-cyan-400/20"></div>
-          <div className="absolute inset-0 rounded-full border-t-2 border-cyan-400 animate-spin"></div>
-        </div>
-        <p className="mt-6 text-slate-400 text-sm tracking-widest uppercase">{t('loading')}</p>
+      <div className="min-h-screen flex flex-col items-center justify-center bg-slate-950 text-center px-4">
+        <p className="text-lg text-slate-300 mb-6">{t('error')}</p>
+        <button
+          onClick={handleRetry}
+          className="text-cyan-400 hover:text-cyan-300 text-sm tracking-widest uppercase border border-cyan-400/30 hover:border-cyan-300/60 px-6 py-2 rounded-full transition-all duration-200"
+        >
+          {t('retry')}
+        </button>
       </div>
     );
   }
@@ -111,9 +130,9 @@ export default function ArticlePage({
             className="absolute inset-0 w-full h-full object-cover"
           />
         ) : (
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-800 via-slate-900 to-cyan-950" />
+          <div className="absolute inset-0 bg-linear-to-br from-slate-800 via-slate-900 to-cyan-950" />
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-slate-950 via-slate-950/60 to-transparent" />
 
         <div className="absolute bottom-0 left-0 right-0 px-6 pb-10 max-w-4xl mx-auto">
           <div className="flex flex-wrap items-center gap-2 mb-4">
@@ -169,7 +188,7 @@ export default function ArticlePage({
         </div>
 
         <div className="relative">
-          <div className="hidden md:block absolute -left-6 top-0 bottom-0 w-px bg-gradient-to-b from-cyan-400/40 via-cyan-400/10 to-transparent" />
+          <div className="hidden md:block absolute -left-6 top-0 bottom-0 w-px bg-linear-to-b from-cyan-400/40 via-cyan-400/10 to-transparent" />
           <div className="text-slate-300 leading-relaxed text-base space-y-4 whitespace-pre-wrap">
             {article.content}
           </div>
